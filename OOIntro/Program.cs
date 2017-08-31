@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿﻿﻿using System;
 
 namespace OOIntro
 {
@@ -6,50 +6,59 @@ namespace OOIntro
     {
         static void Main(string[] args)
         {
-            Employee employee = new Employee();
-            employee.Name = "Steve";
-           
-            employee.DOB = new DateTime(2000,1,1);
-            employee.PayRate = 60;
-            int salary = employee.CalculatePay(30);
+            Manager manager = new Manager();
+            manager.Name = "Chris";
 
-            Console.WriteLine($"{employee.Name} has earned ${salary} this fortnight and is {employee.Age} years old");
+            manager.DOB = new DateTime(1982, 1, 1);
+            manager.PayRate = 60;
+            int salary = manager.CalculatePay(30);
+
+            Console.WriteLine($"{manager.Name} has earned ${salary} this fortnight and is {manager.Age} years old");
 
         }
 
-	   /*In general, encapsulation is one of the four fundamentals of OOP(object-oriented programming). Encapsulation refers to the bundling of data with the methods that
-        * operate on that data.[5] Encapsulation is used to hide the values or state of a structured data object inside a class, preventing unauthorized parties' direct
-        * access to them. Publicly accessible methods are generally provided in the class (so-called getters and setters) to access the values, and other client classes 
-        * call these methods to retrieve and modify the values within the object.*/
+        //inheritance
+        /*  In object-oriented programming, inheritance enables new objects to take on          * the properties of existing objects. A class that is used as the basis for inheritance          * is called a superclass or base class. A class that inherits from a superclass          * is called a subclass or derived class*/
 
-        // Task 4. Lets change the way we access each of our attributes and convert them to properties
 
-        // Task 5. Lets change Age so that it returns an age based on the date of birth - we should also make sure that we cannot just change the Age whenever we want
 
+        // Task 6. Lets add a class for Manger that inherits from Employee
+
+        // Need to chat about Virtual methods - a Virtual method is a method that "can" be overridden
+
+        // Task 7. Lets ensure that the CalculatePay method returns double the pervious calulated aount
         class Employee
         {
             public string Name { get; set; }
-            public int Age 
-            { 
+            public int Age
+            {
                 get
                 {
-					//https://stackoverflow.com/questions/3152977/calculate-the-difference-between-two-dates-and-get-the-value-in-years
-					DateTime now = DateTime.Today;
-					int age = now.Year - DOB.Year;
-					if (DOB > now.AddYears(-age)) age--;
+                    //https://stackoverflow.com/questions/3152977/calculate-the-difference-between-two-dates-and-get-the-value-in-years
+                    DateTime now = DateTime.Today;
+                    int age = now.Year - DOB.Year;
+                    if (DOB > now.AddYears(-age)) age--;
 
                     return age;
 
                 }
             }
             public DateTime DOB { get; set; }
-            public int PayRate{ get; set; }
+            public int PayRate { get; set; }
 
-            public int CalculatePay(int hoursWorked)
+            public virtual int CalculatePay(int hoursWorked)
             {
                 return PayRate * hoursWorked;
             }
-        
         }
+
+        class Manager : Employee
+        {
+            public override int CalculatePay(int hoursWorked)
+            {
+                return base.CalculatePay(hoursWorked) * 2;
+            } 
+        }
+    
 	}
 }
