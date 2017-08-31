@@ -1,4 +1,4 @@
-﻿﻿﻿using System;
+﻿﻿﻿﻿using System;
 
 namespace OOIntro
 {
@@ -6,28 +6,62 @@ namespace OOIntro
     {
         static void Main(string[] args)
         {
-            Manager manager = new Manager();
-            manager.Name = "Chris";
+            const int basePayRate = 50;
+            Console.WriteLine("Pick the type of Worker: 1.Employee 2.Manager and 3.Junior");
+            int employeeTypeID = int.Parse(Console.ReadLine());
+            BaseEmployee employee;
+            switch (employeeTypeID)
+            {
+                case 1:
+                    employee = new Employee();
+                    break;
+				case 2:
+					employee = new Manager();
+					break;
+				case 3:
+					employee = new Junior();
+					break;
+                default:
+                    employee = null;
+                    break;
+            }
 
-            manager.DOB = new DateTime(1982, 1, 1);
-            manager.PayRate = 60;
-            int salary = manager.CalculatePay(30);
+            if (employee is null)
+                throw new Exception("Invalid Employee Type");
+                
 
-            Console.WriteLine($"{manager.Name} has earned ${salary} this fortnight and is {manager.Age} years old");
+			Console.WriteLine("Enter the Name");
+            string name =  Console.ReadLine();
+            employee.Name = name;
+
+			Console.WriteLine("Enter the Hours Worked");
+			int hoursWorked = int.Parse(Console.ReadLine());
+
+            employee.PayRate = basePayRate;
+
+            int salary = employee.CalculatePay(hoursWorked);
+
+            Console.WriteLine($"{employee.Name} has earned ${salary} this fortnight");
 
         }
 
-        //inheritance
-        /*  In object-oriented programming, inheritance enables new objects to take on          * the properties of existing objects. A class that is used as the basis for inheritance          * is called a superclass or base class. A class that inherits from a superclass          * is called a subclass or derived class*/
+		//Polymorphism
+		/*  The word ‘polymorphism’ literally means ‘a state of having many shapes’ or ‘the capacity to take on different forms’. 
+		 * When applied to object oriented programming languages like Java, it describes a language’s ability to process objects
+		 * of various types and classes through a single, uniform interface. 
+        https://www.sitepoint.com/quick-guide-to-polymorphism-in-java/ */
 
+		//We want to talk about a keyword called "Abstract". To mark a class abstract mean you cannot instantiate it. It's pretty cool though becasue
+        //you can have methods and properties that can be used by sub-classes of an abstract class 
+		//https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/abstract
 
+		// Task 8 We want to support a new type of employee - a junior who gets paid 0.8 of a salary. Lets add another class that inherits from employee
 
-        // Task 6. Lets add a class for Manger that inherits from Employee
+        // Task 9 So lets add some code to ask the user to pick the type of employee and their Name and based on that selection calculate the salary
+        // In this task lets assume the company has a base pay of $50 an hour. We wont worry about DOB and Age in this example but we can leave the implementation
+        // for a later date.
 
-        // Need to chat about Virtual methods - a Virtual method is a method that "can" be overridden
-
-        // Task 7. Lets ensure that the CalculatePay method returns double the pervious calulated aount
-        class Employee
+		abstract class BaseEmployee
         {
             public string Name { get; set; }
             public int Age
@@ -52,13 +86,28 @@ namespace OOIntro
             }
         }
 
-        class Manager : Employee
+        class Manager : BaseEmployee
         {
             public override int CalculatePay(int hoursWorked)
             {
                 return base.CalculatePay(hoursWorked) * 2;
-            } 
+            }
         }
+
+        class Junior : BaseEmployee
+        {
+			public override int CalculatePay(int hoursWorked)
+			{
+                //https://stackoverflow.com/questions/501090/how-do-i-convert-a-decimal-to-an-int-in-c
+				return Convert.ToInt32(base.CalculatePay(hoursWorked) * 0.8);
+			}
+        }
+
+		class Employee : BaseEmployee
+		{
+			
+		}
+    
     
 	}
 }
