@@ -1,0 +1,10 @@
+/code/CSharpLessons2017/OOIntro/bin/Debug/netcoreapp1.1/OOIntro.deps.json
+/code/CSharpLessons2017/OOIntro/bin/Debug/netcoreapp1.1/OOIntro.runtimeconfig.json
+/code/CSharpLessons2017/OOIntro/bin/Debug/netcoreapp1.1/OOIntro.runtimeconfig.dev.json
+/code/CSharpLessons2017/OOIntro/bin/Debug/netcoreapp1.1/OOIntro.dll
+/code/CSharpLessons2017/OOIntro/bin/Debug/netcoreapp1.1/OOIntro.pdb
+/code/CSharpLessons2017/OOIntro/obj/Debug/netcoreapp1.1/OOIntro.csprojResolveAssemblyReference.cache
+/code/CSharpLessons2017/OOIntro/obj/Debug/netcoreapp1.1/OOIntro.csproj.CoreCompileInputs.cache
+/code/CSharpLessons2017/OOIntro/obj/Debug/netcoreapp1.1/OOIntro.AssemblyInfo.cs
+/code/CSharpLessons2017/OOIntro/obj/Debug/netcoreapp1.1/OOIntro.dll
+/code/CSharpLessons2017/OOIntro/obj/Debug/netcoreapp1.1/OOIntro.pdb
