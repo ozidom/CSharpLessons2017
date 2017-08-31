@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 
 namespace OOIntro
 {
@@ -8,34 +8,42 @@ namespace OOIntro
         {
             Employee employee = new Employee();
             employee.Name = "Steve";
-            employee.Age = 17;
+           
             employee.DOB = new DateTime(2000,1,1);
             employee.PayRate = 60;
             int salary = employee.CalculatePay(30);
 
-            Console.WriteLine($"{employee.Name} has earned ${salary} this year");
+            Console.WriteLine($"{employee.Name} has earned ${salary} this fortnight and is {employee.Age} years old");
 
         }
 
-        /*
-         *  Through the process of abstraction, a programmer hides all but the relevant data about an object in order to reduce complexity and increase efficiency.
-         * In the same way that abstraction sometimes works in art, the object that remains is a representation of the original, with unwanted detail omitted.
-         * The resulting object itself can be referred to as an abstraction, meaning a named entity made up of selected attributes and behavior specific to a particular 
-         * usage of the originating entity.
-         */
+	   /*In general, encapsulation is one of the four fundamentals of OOP(object-oriented programming). Encapsulation refers to the bundling of data with the methods that
+        * operate on that data.[5] Encapsulation is used to hide the values or state of a structured data object inside a class, preventing unauthorized parties' direct
+        * access to them. Publicly accessible methods are generally provided in the class (so-called getters and setters) to access the values, and other client classes 
+        * call these methods to retrieve and modify the values within the object.*/
 
-        // Task 1. Lets create an Employee class that abstracts an employee
+        // Task 4. Lets change the way we access each of our attributes and convert them to properties
 
-        // Task 2. Lets adds a few attribues Name, Age, DOB, PayRate
-
-        // Task 3. Lets add a method to calculatePay by passing it the hours worked
+        // Task 5. Lets change Age so that it returns an age based on the date of birth - we should also make sure that we cannot just change the Age whenever we want
 
         class Employee
         {
-            public string Name;
-            public int Age;
-            public DateTime DOB;
-            public int PayRate;
+            public string Name { get; set; }
+            public int Age 
+            { 
+                get
+                {
+					//https://stackoverflow.com/questions/3152977/calculate-the-difference-between-two-dates-and-get-the-value-in-years
+					DateTime now = DateTime.Today;
+					int age = now.Year - DOB.Year;
+					if (DOB > now.AddYears(-age)) age--;
+
+                    return age;
+
+                }
+            }
+            public DateTime DOB { get; set; }
+            public int PayRate{ get; set; }
 
             public int CalculatePay(int hoursWorked)
             {
