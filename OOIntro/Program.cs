@@ -1,4 +1,7 @@
 ﻿﻿﻿﻿using System;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace OOIntro
 {
@@ -6,108 +9,64 @@ namespace OOIntro
     {
         static void Main(string[] args)
         {
-            const int basePayRate = 50;
-            Console.WriteLine("Pick the type of Worker: 1.Employee 2.Manager and 3.Junior");
-            int employeeTypeID = int.Parse(Console.ReadLine());
-            BaseEmployee employee;
-            switch (employeeTypeID)
-            {
-                case 1:
-                    employee = new Employee();
-                    break;
-				case 2:
-					employee = new Manager();
-					break;
-				case 3:
-					employee = new Junior();
-					break;
-                default:
-                    employee = null;
-                    break;
-            }
+            /* Object Serialization 
+             * Serialization can be defined as the process of storing the state of an object instance to a storage
+             * medium. During this process, the public and private fields of the object and the name of the class,
+             * including the assembly containing the class, is converted to a stream of bytes, which is then written
+             * to a data stream. When the object is subsequently deserialized, an exact clone of the original object
+             * is created.
+             Source:MSDN */
 
-            if (employee is null)
-                throw new Exception("Invalid Employee Type");
-                
+            /* Serialization:Taking an Object and storing it in a suitable format
+             * DeSerialization:Taking the stored and rehydrating it as an Object */
 
-			Console.WriteLine("Enter the Name");
-            string name =  Console.ReadLine();
-            employee.Name = name;
 
-			Console.WriteLine("Enter the Hours Worked");
-			int hoursWorked = int.Parse(Console.ReadLine());
+            /*  Streams 
+             *  Streams are just ways to transporting data to a specific target destination.
+             *  Data => PUT IT IN THE STREAM => STORE IT SOMEWHERE
+                FileStream – for reading and writing to a file.
+                IsolatedStorageFileStream – for reading and writing to a file in isolated storage.
+                MemoryStream – for reading and writing to memory as the backing store.
+                BufferedStream – for improving performance of read and write operations.
+                NetworkStream – for reading and writing over network sockets.
+                PipeStream – for reading and writing over anonymous and named pipes.
+                CryptoStream – for linking data streams to cryptographic transformations. 
+                Source:MSDN */
 
-            employee.PayRate = basePayRate;
+            /* Serialization and Steams
+             * Serilize the Data => PUT IT IN THE STREAM => STORE IT SOMEWHERE or SEND IT SOMEWHERE */
 
-            int salary = employee.CalculatePay(hoursWorked);
+            SimpleEmployee employee = new SimpleEmployee();
+            employee.Name = "John Wayne";
+            employee.DOB = new DateTime(1908, 1, 1);
+            employee.PayRate = 1000;
 
-            Console.WriteLine($"{employee.Name} has earned ${salary} this fortnight");
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(@"C:\temp\MyEmployee.bin",
+                                     FileMode.Create,
+                                     FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, employee);
+            stream.Close();
 
+            //OK SO thats been saved now - now lets desiralized
+            IFormatter deSerializationformatter = new BinaryFormatter();
+            Stream deSerializationStream = new FileStream(@"C:\temp\MyEmployee.bin",
+                                      FileMode.Open,
+                                      FileAccess.Read,
+                                      FileShare.Read);
+            SimpleEmployee obj = (SimpleEmployee)formatter.Deserialize(deSerializationStream);
+
+            Console.WriteLine($"{obj.Name}");
+            deSerializationStream.Close();
+            Console.ReadLine();
         }
+    }
 
-		//Polymorphism
-		/*  The word ‘polymorphism’ literally means ‘a state of having many shapes’ or ‘the capacity to take on different forms’. 
-		 * When applied to object oriented programming languages like Java, it describes a language’s ability to process objects
-		 * of various types and classes through a single, uniform interface. 
-        https://www.sitepoint.com/quick-guide-to-polymorphism-in-java/ */
-
-		//We want to talk about a keyword called "Abstract". To mark a class abstract mean you cannot instantiate it. It's pretty cool though becasue
-        //you can have methods and properties that can be used by sub-classes of an abstract class 
-		//https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/abstract
-
-		// Task 8 We want to support a new type of employee - a junior who gets paid 0.8 of a salary. Lets add another class that inherits from employee
-
-        // Task 9 So lets add some code to ask the user to pick the type of employee and their Name and based on that selection calculate the salary
-        // In this task lets assume the company has a base pay of $50 an hour. We wont worry about DOB and Age in this example but we can leave the implementation
-        // for a later date.
-
-		abstract class BaseEmployee
-        {
-            public string Name { get; set; }
-            public int Age
-            {
-                get
-                {
-                    //https://stackoverflow.com/questions/3152977/calculate-the-difference-between-two-dates-and-get-the-value-in-years
-                    DateTime now = DateTime.Today;
-                    int age = now.Year - DOB.Year;
-                    if (DOB > now.AddYears(-age)) age--;
-
-                    return age;
-
-                }
-            }
-            public DateTime DOB { get; set; }
-            public int PayRate { get; set; }
-
-            public virtual int CalculatePay(int hoursWorked)
-            {
-                return PayRate * hoursWorked;
-            }
-        }
-
-        class Manager : BaseEmployee
-        {
-            public override int CalculatePay(int hoursWorked)
-            {
-                return base.CalculatePay(hoursWorked) * 2;
-            }
-        }
-
-        class Junior : BaseEmployee
-        {
-			public override int CalculatePay(int hoursWorked)
-			{
-                //https://stackoverflow.com/questions/501090/how-do-i-convert-a-decimal-to-an-int-in-c
-				return Convert.ToInt32(base.CalculatePay(hoursWorked) * 0.8);
-			}
-        }
-
-		class Employee : BaseEmployee
-		{
-			
-		}
-    
-    
-	}
+    [Serializable]
+    public class SimpleEmployee
+    {
+        public string Name { get; set; }
+        public DateTime DOB { get; set; }
+        public int PayRate { get; set; }
+    }
 }
