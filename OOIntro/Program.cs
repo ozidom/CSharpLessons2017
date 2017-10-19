@@ -34,6 +34,8 @@ namespace OOIntro
              basic coding patterns to query and transform data in XML documents,
              SQL databases, ADO.NET Datasets, FileSystems, .NET collections, and any other 
              format for which a LINQ provider is available.
+
+             Source: https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/introduction-to-linq-queries
              */
 
 			List<Employee> employees = new List<Employee>();
