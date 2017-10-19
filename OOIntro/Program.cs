@@ -17,14 +17,35 @@ namespace OOIntro
         {
             Console.WriteLine("Start of Intro to Linq");
 
-            //Linq is my favourite feature in C# :)
-            //Language INtegrated Query
-            //Like writing SQL like statements for all collections in C#
+			//Linq is my favourite feature in C# :)
+			//Language INtegrated Query
+			//Like writing SQL like statements for all collections in C# ... but there is a really cool shorthand called Lambda Syntax
 
-            List<Employee> employees = new List<Employee>();
+			/*
+             A query is an expression that retrieves data from a data source.
+             Queries are usually expressed in a specialized query language. 
+             Different languages have been developed over time for the various types of data sources, 
+             for example SQL for relational databases and XQuery for XML. 
+             Therefore, developers have had to learn a new query language for each 
+             type of data source or data format that they must support.
+             LINQ simplifies this situation by offering a consistent model
+             for working with data across various kinds of data sources and formats. 
+             In a LINQ query, you are always working with objects. You use the same
+             basic coding patterns to query and transform data in XML documents,
+             SQL databases, ADO.NET Datasets, FileSystems, .NET collections, and any other 
+             format for which a LINQ provider is available.
+             */
+
+			List<Employee> employees = new List<Employee>();
             employees.Add(new Employee { Name = "chris j", Salary = 300000m, Suburb = "Hawker" });
             employees.Add(new Employee { Name = "dom", Salary = 50000m, Suburb = "Unsafe Florey" });
             employees.Add(new Employee { Name = "santa", Salary = 10m, Suburb = "North Pole" });
+
+
+
+
+
+
 
 
 
@@ -69,6 +90,18 @@ namespace OOIntro
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
             //Two forms of LINQ 
             //1. QuerySyntax
             //2. Lambda
@@ -79,12 +112,21 @@ namespace OOIntro
                         from e
                         in employees
                         where e.Suburb == "Hawker"
-                         select e;
+                        select e;
 
             foreach (Employee employeeHawker in employeesInHawkerLinqQuerySyntax)
             {
                 Console.WriteLine($"{employeeHawker.Name}");
             }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -106,6 +148,16 @@ namespace OOIntro
                 Console.WriteLine($"{employeeHawkerLambda.Name}");
             }
 
-        }
+
+			//References
+
+			//https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/introduction-to-linq-queries
+			//http://theburningmonk.com/2010/02/linq-lambda-expression-vs-query-expression/
+
+            //Homework
+
+           // https://www.w3resource.com/csharp-exercises/linq/index.php
+
+		}
     }
 }
