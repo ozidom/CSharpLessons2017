@@ -60,7 +60,6 @@ namespace OOIntro
 
 
 
-
             Console.WriteLine("In the time before linq");
             //task 1 find the persons in Hawker
             List<Employee> employeesInHawker = new List<Employee>();
