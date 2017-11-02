@@ -20,6 +20,14 @@ namespace OOIntro
             int max = numbers.Max();
             Console.WriteLine($"Max {max}");
 
+			//Now lets get the number of items in the list
+			int sum = numbers.Sum();
+			Console.WriteLine($"Sum {sum}");
+
+			//Now lets get the average of items in the list
+			double avg = numbers.Average();
+			Console.WriteLine($"Sum {avg}");
+
             //Now lets get the number of items in the list
             int count = numbers.Count();
             Console.WriteLine($"Count {count}");
@@ -36,6 +44,11 @@ namespace OOIntro
             //Lets add another list and see if we can do a union (intersect)
             var intersect = moreNumbers.Intersect(numbers);
             PrintList(intersect.ToList(), "Intersect");
+
+
+            //Home work
+            //TBA
+
 
             Console.ReadLine();
         }
