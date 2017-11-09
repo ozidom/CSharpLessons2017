@@ -2278,9 +2278,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/code/CSharpLessons2017/OOIntro/OOIntro.csproj",
-      "projectName": "OOIntro",
-      "projectPath": "/code/CSharpLessons2017/OOIntro/OOIntro.csproj",
+      "projectUniqueName": "/code/CSharpLessons2017/OOIntro/CSharpLessons.csproj",
+      "projectName": "CSharpLessons",
+      "projectPath": "/code/CSharpLessons2017/OOIntro/CSharpLessons.csproj",
       "outputPath": "/code/CSharpLessons2017/OOIntro/obj",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [

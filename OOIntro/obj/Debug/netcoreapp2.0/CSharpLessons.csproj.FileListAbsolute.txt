@@ -1,0 +1,10 @@
+/code/CSharpLessons2017/OOIntro/bin/Debug/netcoreapp2.0/CSharpLessons.deps.json
+/code/CSharpLessons2017/OOIntro/bin/Debug/netcoreapp2.0/CSharpLessons.runtimeconfig.json
+/code/CSharpLessons2017/OOIntro/bin/Debug/netcoreapp2.0/CSharpLessons.runtimeconfig.dev.json
+/code/CSharpLessons2017/OOIntro/obj/Debug/netcoreapp2.0/CSharpLessons.csprojResolveAssemblyReference.cache
+/code/CSharpLessons2017/OOIntro/obj/Debug/netcoreapp2.0/CSharpLessons.csproj.CoreCompileInputs.cache
+/code/CSharpLessons2017/OOIntro/obj/Debug/netcoreapp2.0/CSharpLessons.AssemblyInfo.cs
+/code/CSharpLessons2017/OOIntro/bin/Debug/netcoreapp2.0/CSharpLessons.dll
+/code/CSharpLessons2017/OOIntro/bin/Debug/netcoreapp2.0/CSharpLessons.pdb
+/code/CSharpLessons2017/OOIntro/obj/Debug/netcoreapp2.0/CSharpLessons.dll
+/code/CSharpLessons2017/OOIntro/obj/Debug/netcoreapp2.0/CSharpLessons.pdb

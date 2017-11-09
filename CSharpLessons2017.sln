@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOIntro", "OOIntro\OOIntro.csproj", "{3725756D-7F7D-4776-9F28-36FAE551A4E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpLessons", "OOIntro\CSharpLessons.csproj", "{3725756D-7F7D-4776-9F28-36FAE551A4E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
