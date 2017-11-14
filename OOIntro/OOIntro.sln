@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 15.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOIntro", "OOIntro.csproj", "{DFD5786C-3A87-4D42-9252-8C0D5CBEF37F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFD5786C-3A87-4D42-9252-8C0D5CBEF37F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFD5786C-3A87-4D42-9252-8C0D5CBEF37F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFD5786C-3A87-4D42-9252-8C0D5CBEF37F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFD5786C-3A87-4D42-9252-8C0D5CBEF37F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

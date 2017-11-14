@@ -1,4 +1,6 @@
 ﻿﻿﻿﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OOIntro
 {
@@ -6,108 +8,56 @@ namespace OOIntro
     {
         static void Main(string[] args)
         {
-            const int basePayRate = 50;
-            Console.WriteLine("Pick the type of Worker: 1.Employee 2.Manager and 3.Junior");
-            int employeeTypeID = int.Parse(Console.ReadLine());
-            BaseEmployee employee;
-            switch (employeeTypeID)
-            {
-                case 1:
-                    employee = new Employee();
-                    break;
-				case 2:
-					employee = new Manager();
-					break;
-				case 3:
-					employee = new Junior();
-					break;
-                default:
-                    employee = null;
-                    break;
-            }
+            /*
+             *Generics are the most powerful feature of C# 2.0. Generics allow you to define type-safe data structures,
+             *without committing to actual data types. This results in a significant performance boost and higher quality
+             *code, because you get to reuse data processing algorithms without duplicating type-specific code
+            *https://msdn.microsoft.com/en-us/library/ms379564(v=vs.80).aspx
+            */
+            List<int> numbers = new List<int>() { 3, 42, 3, 5, 5, 3, 3, };
+            List<string> words = new List<string>() { "the", "big", "list", "of", "z", "numbers" };
 
-            if (employee is null)
-                throw new Exception("Invalid Employee Type");
-                
+            int maxNumber = numbers.Max();
+            string maxWord = words.Max();
 
-			Console.WriteLine("Enter the Name");
-            string name =  Console.ReadLine();
-            employee.Name = name;
+            Console.WriteLine($"{maxNumber}");
+            Console.WriteLine($"{maxWord}");
 
-			Console.WriteLine("Enter the Hours Worked");
-			int hoursWorked = int.Parse(Console.ReadLine());
+            RandomBag<int> bag = new RandomBag<int>();
+            bag.ChuckIn(3);
+            bag.ChuckIn(33);
+            bag.ChuckIn(43);
+            bag.ChuckIn(16);
+            bag.ChuckIn(317);
+            bag.ChuckIn(89);
 
-            employee.PayRate = basePayRate;
-
-            int salary = employee.CalculatePay(hoursWorked);
-
-            Console.WriteLine($"{employee.Name} has earned ${salary} this fortnight");
+            Console.WriteLine($"{bag.Get()}");
 
         }
 
-		//Polymorphism
-		/*  The word ‘polymorphism’ literally means ‘a state of having many shapes’ or ‘the capacity to take on different forms’. 
-		 * When applied to object oriented programming languages like Java, it describes a language’s ability to process objects
-		 * of various types and classes through a single, uniform interface. 
-        https://www.sitepoint.com/quick-guide-to-polymorphism-in-java/ */
+    }
 
-		//We want to talk about a keyword called "Abstract". To mark a class abstract mean you cannot instantiate it. It's pretty cool though becasue
-        //you can have methods and properties that can be used by sub-classes of an abstract class 
-		//https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/abstract
-
-		// Task 8 We want to support a new type of employee - a junior who gets paid 0.8 of a salary. Lets add another class that inherits from employee
-
-        // Task 9 So lets add some code to ask the user to pick the type of employee and their Name and based on that selection calculate the salary
-        // In this task lets assume the company has a base pay of $50 an hour. We wont worry about DOB and Age in this example but we can leave the implementation
-        // for a later date.
-
-		abstract class BaseEmployee
+    class RandomBag<T>
+    {
+        List<T> bag = new List<T>();
+        public RandomBag()
         {
-            public string Name { get; set; }
-            public int Age
-            {
-                get
-                {
-                    //https://stackoverflow.com/questions/3152977/calculate-the-difference-between-two-dates-and-get-the-value-in-years
-                    DateTime now = DateTime.Today;
-                    int age = now.Year - DOB.Year;
-                    if (DOB > now.AddYears(-age)) age--;
-
-                    return age;
-
-                }
-            }
-            public DateTime DOB { get; set; }
-            public int PayRate { get; set; }
-
-            public virtual int CalculatePay(int hoursWorked)
-            {
-                return PayRate * hoursWorked;
-            }
+            bag = new List<T>();
         }
-
-        class Manager : BaseEmployee
+       
+        public void ChuckIn(T item)
         {
-            public override int CalculatePay(int hoursWorked)
-            {
-                return base.CalculatePay(hoursWorked) * 2;
-            }
+            bag.Add(item);
         }
 
-        class Junior : BaseEmployee
+        public T Get()
         {
-			public override int CalculatePay(int hoursWorked)
-			{
-                //https://stackoverflow.com/questions/501090/how-do-i-convert-a-decimal-to-an-int-in-c
-				return Convert.ToInt32(base.CalculatePay(hoursWorked) * 0.8);
-			}
+            var r = new Random();
+            int i = r.Next(bag.Count);
+            return bag[i];
         }
 
-		class Employee : BaseEmployee
-		{
-			
-		}
-    
-    
-	}
+
+    }
+
 }

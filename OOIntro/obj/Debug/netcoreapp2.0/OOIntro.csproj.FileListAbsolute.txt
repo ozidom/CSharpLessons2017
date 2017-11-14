@@ -7,3 +7,4 @@
 /code/CSharpLessons2017/OOIntro/bin/Debug/netcoreapp2.0/OOIntro.pdb
 /code/CSharpLessons2017/OOIntro/obj/Debug/netcoreapp2.0/OOIntro.dll
 /code/CSharpLessons2017/OOIntro/obj/Debug/netcoreapp2.0/OOIntro.pdb
+/code/CSharpLessons2017/OOIntro/obj/Debug/netcoreapp2.0/OOIntro.csprojResolveAssemblyReference.cache
