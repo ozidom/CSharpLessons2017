@@ -23,6 +23,7 @@ namespace OOIntro
             Console.WriteLine($"{maxNumber}");
             Console.WriteLine($"{maxWord}");
 
+            //Now lets look at how we can create a Generic Class
             RandomBag<int> bag = new RandomBag<int>();
             bag.ChuckIn(3);
             bag.ChuckIn(33);
@@ -31,12 +32,39 @@ namespace OOIntro
             bag.ChuckIn(317);
             bag.ChuckIn(89);
 
-            Console.WriteLine($"{bag.Get()}");
+            //OK so we used it for ints and that works well but how
+            //bout we use it now for say strings
+			RandomBag<string> stringBag = new RandomBag<string>();
+			stringBag.ChuckIn("Chris");
+			stringBag.ChuckIn("Johnson");
+			stringBag.ChuckIn("is");
+			stringBag.ChuckIn("a really");
+			stringBag.ChuckIn("realy cool");
+			stringBag.ChuckIn("guy");
 
-        }
+            Console.WriteLine($"{bag.Get()}");
+            Console.WriteLine($"{stringBag.Get()}");
+
+			//Homework
+			//1. Can you think of a cool way to use the random bag to implement a dice
+
+			//2. Write a Generic Class called ModeCollection to return the most popular member (think statistics: Mode)  of a collection
+			/*
+             * Mode (statistics) The mode of a set of data values is the value that appears most often. 
+             * It is the value x at which its probability mass function takes its maximum value. 
+             * In other words, it is the value that is most likely to be sampled.
+             * https://en.wikipedia.org/wiki/Mode_(statistics)
+            */
+
+			//MORE
+			//https://www.youtube.com/watch?v=gyal6TbgmSU
+
+
+		}
 
     }
 
+    //This is a classic 
     class RandomBag<T>
     {
         List<T> bag = new List<T>();
